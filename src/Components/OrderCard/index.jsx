@@ -1,8 +1,13 @@
-import React from 'react'
-import { XMarkIcon } from '@heroicons/react/24/solid'
+import React from 'react';
+import { XMarkIcon } from '@heroicons/react/24/solid';
 
 const OrderCard = props => {
-  const { id, title, imageUrl, price, handleDelete } = props
+  const { id, title, imageUrl, price, handleDelete, closeOrderCart } = props;
+
+  const handleDeleteAndClose = () => {
+    handleDelete(id);
+    closeOrderCart(); // Llama a la función para cerrar el componente "orderCart"
+  };
 
   return (
     <div className="flex justify-between items-center mb-3">
@@ -14,10 +19,10 @@ const OrderCard = props => {
       </div>
       <div className='flex items-center gap-2'>
         <p className='text-lg font-medium'>{price}</p>
-        <XMarkIcon onClick={() => handleDelete(id)} className='h-6 w-6 text-black cursor-pointer'></XMarkIcon>
+        <XMarkIcon onClick={handleDeleteAndClose} className='h-6 w-6 text-black cursor-pointer'></XMarkIcon>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default OrderCard
+export default OrderCard;
